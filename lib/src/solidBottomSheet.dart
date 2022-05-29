@@ -184,7 +184,12 @@ class _SolidBottomSheetState extends State<SolidBottomSheet> {
                   onVerticalDragEnd:
                       widget.autoSwiped ? _onVerticalDragEnd : null,
                   onTap: widget.toggleVisibilityOnTap ? _onTap : null,
-                  child: widget.body,
+                  child: ClipRect(
+                    child: BackdropFilter(
+                      filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                      child: widget.body
+                    ),
+                  ),
                 ),
               );
             },
