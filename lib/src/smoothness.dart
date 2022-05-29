@@ -3,7 +3,7 @@ class Smoothness {
 
   Smoothness._() : _value = 0;
 
-  const Smoothness._low() : _value = 100;
+  const Smoothness._low() : _value = 150;
 
   const Smoothness._medium() : _value = 250;
 
