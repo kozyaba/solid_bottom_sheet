@@ -148,7 +148,7 @@ class _SolidBottomSheetState extends State<SolidBottomSheet> {
           onVerticalDragEnd: widget.autoSwiped ? _onVerticalDragEnd : null,
           onTap: widget.toggleVisibilityOnTap ? _onTap : null,
           child: Container(
-            color: Colors.transparent,
+            color: Colors.black,
             decoration: widget.elevation > 0
                 ? BoxDecoration(boxShadow: [
                     BoxShadow(
