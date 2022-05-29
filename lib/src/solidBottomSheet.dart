@@ -178,17 +178,15 @@ class _SolidBottomSheetState extends State<SolidBottomSheet> {
                 duration:
                     Duration(milliseconds: widget.controller!.smoothness!.value),
                 height: snapshot.data,
-                child: GestureDetector(
-                  onVerticalDragUpdate:
-                      widget.draggableBody ? _onVerticalDragUpdate : null,
-                  onVerticalDragEnd:
-                      widget.autoSwiped ? _onVerticalDragEnd : null,
-                  onTap: widget.toggleVisibilityOnTap ? _onTap : null,
-                  child: ClipRect(
-                    child: BackdropFilter(
-                      filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                      child: widget.body
-                    ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaY: 15.0, sigmaX: 15.0,),
+                  child: GestureDetector(
+                    onVerticalDragUpdate:
+                        widget.draggableBody ? _onVerticalDragUpdate : null,
+                    onVerticalDragEnd:
+                        widget.autoSwiped ? _onVerticalDragEnd : null,
+                    onTap: widget.toggleVisibilityOnTap ? _onTap : null,
+                    child: widget.body,
                   ),
                 ),
               );
