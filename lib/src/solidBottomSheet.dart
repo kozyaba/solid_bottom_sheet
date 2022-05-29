@@ -139,59 +139,61 @@ class _SolidBottomSheetState extends State<SolidBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return BackdropFilter(
-      filter: ImageFilter.blur(sigmaY: 15.0, sigmaX: 15.0,),
-      child: Container(
-        decoration: new BoxDecoration(
-          color: Colors.grey.shade200.withOpacity(0.5)
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            GestureDetector(
-              onVerticalDragUpdate:
-                  widget.canUserSwipe ? _onVerticalDragUpdate : null,
-              onVerticalDragEnd: widget.autoSwiped ? _onVerticalDragEnd : null,
-              onTap: widget.toggleVisibilityOnTap ? _onTap : null,
-              child: ClipRect(
-                child: BackdropFilter(
-                  filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                  child: Container(
-                    decoration: widget.elevation > 0
-                        ? BoxDecoration(boxShadow: [
-                            BoxShadow(
-                              color: Colors.black54,
-                              blurRadius: widget.elevation,
-                            ),
-                          ])
-                        : null,
-                    width: MediaQuery.of(context).size.width,
-                    child: widget.headerBar,
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaY: 15.0, sigmaX: 15.0,),
+        child: Container(
+          decoration: new BoxDecoration(
+            color: Colors.grey.shade200.withOpacity(0.5)
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              GestureDetector(
+                onVerticalDragUpdate:
+                    widget.canUserSwipe ? _onVerticalDragUpdate : null,
+                onVerticalDragEnd: widget.autoSwiped ? _onVerticalDragEnd : null,
+                onTap: widget.toggleVisibilityOnTap ? _onTap : null,
+                child: ClipRect(
+                  child: BackdropFilter(
+                    filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                    child: Container(
+                      decoration: widget.elevation > 0
+                          ? BoxDecoration(boxShadow: [
+                              BoxShadow(
+                                color: Colors.black54,
+                                blurRadius: widget.elevation,
+                              ),
+                            ])
+                          : null,
+                      width: MediaQuery.of(context).size.width,
+                      child: widget.headerBar,
+                    ),
                   ),
                 ),
               ),
-            ),
-            StreamBuilder<double>(
-              stream: widget.controller!.heightStream,
-              initialData: widget.controller!.height,
-              builder: (_, snapshot) {
-                return AnimatedContainer(
-                  curve: Curves.easeOut,
-                  duration:
-                      Duration(milliseconds: widget.controller!.smoothness!.value),
-                  height: snapshot.data,
-                  child: GestureDetector(
-                    onVerticalDragUpdate:
-                        widget.draggableBody ? _onVerticalDragUpdate : null,
-                    onVerticalDragEnd:
-                        widget.autoSwiped ? _onVerticalDragEnd : null,
-                    onTap: widget.toggleVisibilityOnTap ? _onTap : null,
-                    child: widget.body,
-                  ),
-                );
-              },
-            ),
-          ],
+              StreamBuilder<double>(
+                stream: widget.controller!.heightStream,
+                initialData: widget.controller!.height,
+                builder: (_, snapshot) {
+                  return AnimatedContainer(
+                    curve: Curves.easeOut,
+                    duration:
+                        Duration(milliseconds: widget.controller!.smoothness!.value),
+                    height: snapshot.data,
+                    child: GestureDetector(
+                      onVerticalDragUpdate:
+                          widget.draggableBody ? _onVerticalDragUpdate : null,
+                      onVerticalDragEnd:
+                          widget.autoSwiped ? _onVerticalDragEnd : null,
+                      onTap: widget.toggleVisibilityOnTap ? _onTap : null,
+                      child: widget.body,
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
