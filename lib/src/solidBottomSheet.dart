@@ -148,7 +148,6 @@ class _SolidBottomSheetState extends State<SolidBottomSheet> {
           onVerticalDragEnd: widget.autoSwiped ? _onVerticalDragEnd : null,
           onTap: widget.toggleVisibilityOnTap ? _onTap : null,
           child: Container(
-            color: Color.fromARGB(0, 0, 0, 0),
             decoration: widget.elevation > 0
                 ? BoxDecoration(boxShadow: [
                     BoxShadow(
@@ -166,6 +165,7 @@ class _SolidBottomSheetState extends State<SolidBottomSheet> {
           initialData: widget.controller!.height,
           builder: (_, snapshot) {
             return AnimatedContainer(
+              color: Colors.transparent,
               curve: Curves.easeOut,
               duration:
                   Duration(milliseconds: widget.controller!.smoothness!.value),
