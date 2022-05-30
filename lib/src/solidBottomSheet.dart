@@ -150,8 +150,7 @@ class _SolidBottomSheetState extends State<SolidBottomSheet> {
           GestureDetector(
             onVerticalDragUpdate:
                 widget.canUserSwipe ? _onVerticalDragUpdate : null,
-            onVerticalDragEnd:
-                widget.autoSwiped ? _onVerticalDragEnd : null,
+            onVerticalDragEnd: widget.autoSwiped ? _onVerticalDragEnd : null,
             onTap: widget.toggleVisibilityOnTap ? _onTap : null,
             child: Container(
               decoration: widget.elevation > 0
@@ -192,6 +191,7 @@ class _SolidBottomSheetState extends State<SolidBottomSheet> {
   }
 
   void _hide() {
+    print('sheet hide');
     if (widget.onHide != null) widget.onHide!();
     widget.controller!.height = widget.minHeight;
   }
