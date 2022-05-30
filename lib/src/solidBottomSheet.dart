@@ -133,6 +133,7 @@ class _SolidBottomSheetState extends State<SolidBottomSheet> {
     print('sheet: initState');
     widget.controller!.value = widget.showOnAppear;
     _controllerListener = () {
+      print('sheet event listner: initState');
       widget.controller!.value ? _show() : _hide();
     };
     widget.controller!.addListener(_controllerListener!);
