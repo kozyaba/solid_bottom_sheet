@@ -130,6 +130,7 @@ class _SolidBottomSheetState extends State<SolidBottomSheet> {
   @override
   void initState() {
     super.initState();
+    print('sheet: initState');
     widget.controller!.value = widget.showOnAppear;
     _controllerListener = () {
       widget.controller!.value ? _show() : _hide();
@@ -140,33 +141,28 @@ class _SolidBottomSheetState extends State<SolidBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: new BoxDecoration(
-        color: Colors.grey.shade200.withOpacity(0.5)
-      ),
+      decoration:
+          new BoxDecoration(color: Colors.grey.shade200.withOpacity(0.5)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          ClipRect(
-            child: BackdropFilter(
-              filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-              child: GestureDetector(
-                onVerticalDragUpdate:
-                    widget.canUserSwipe ? _onVerticalDragUpdate : null,
-                onVerticalDragEnd: widget.autoSwiped ? _onVerticalDragEnd : null,
-                onTap: widget.toggleVisibilityOnTap ? _onTap : null,
-                child: Container(
-                  decoration: widget.elevation > 0
-                      ? BoxDecoration(boxShadow: [
-                          BoxShadow(
-                            color: Colors.black54,
-                            blurRadius: widget.elevation,
-                          ),
-                        ])
-                      : null,
-                  width: MediaQuery.of(context).size.width,
-                  child: widget.headerBar,
-                ),
-              ),
+          GestureDetector(
+            onVerticalDragUpdate:
+                widget.canUserSwipe ? _onVerticalDragUpdate : null,
+            onVerticalDragEnd:
+                widget.autoSwiped ? _onVerticalDragEnd : null,
+            onTap: widget.toggleVisibilityOnTap ? _onTap : null,
+            child: Container(
+              decoration: widget.elevation > 0
+                  ? BoxDecoration(boxShadow: [
+                      BoxShadow(
+                        color: Colors.black54,
+                        blurRadius: widget.elevation,
+                      ),
+                    ])
+                  : null,
+              width: MediaQuery.of(context).size.width,
+              child: widget.headerBar,
             ),
           ),
           StreamBuilder<double>(
@@ -175,8 +171,8 @@ class _SolidBottomSheetState extends State<SolidBottomSheet> {
             builder: (_, snapshot) {
               return AnimatedContainer(
                 curve: Curves.easeOut,
-                duration:
-                    Duration(milliseconds: widget.controller!.smoothness!.value),
+                duration: Duration(
+                    milliseconds: widget.controller!.smoothness!.value),
                 height: snapshot.data,
                 child: GestureDetector(
                   onVerticalDragUpdate:
